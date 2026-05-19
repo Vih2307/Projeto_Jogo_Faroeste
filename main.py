@@ -157,13 +157,13 @@ def menu_principal(jogador):
             time.sleep(1)
 
             if rolagem >= 18:
-                img_path = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21\ladrao_bandoleiro_1778028056322.png" # Proxy pra trem
+                img_path = os.path.join(ui.BASE_DIR, "assets", "ladrao_bandoleiro_1778028056322.png") # Proxy pra trem
                 ui.mostrar_imagem(img_path)
                 if not evento_assalto_trem(jogador, dados):
                     break
 
             elif rolagem >= 12:
-                img_path = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21\sela_faroeste_1778026536324.png" # Proxy pra bau
+                img_path = os.path.join(ui.BASE_DIR, "assets", "sela_faroeste_1778026536324.png") # Proxy pra bau
                 ui.mostrar_imagem(img_path)
                 if not evento_bau(jogador, dados):
                     break

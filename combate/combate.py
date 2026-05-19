@@ -2,6 +2,8 @@ import random
 from sistema_dados.dados import SistemaDados
 import ui
 import time
+import os
+
 
 
 class Combate:
@@ -22,30 +24,29 @@ class Combate:
         ui.console.print(f"\n[bold red]Um perigo se aproxima no horizonte...[/bold red]")
         
         # Mapeamento de imagens
-        old_folder = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21"
-        new_folder = r"C:\Users\vinic\.gemini\antigravity\brain\1149e488-93d8-4b3b-ad9d-70e9dd074eee"
+        assets_folder = os.path.join(ui.BASE_DIR, "assets")
         
         enemy_imgs = {
-            "Coiote Faminto": (old_folder, "lobo_coiote_1778027475322.png"),
-            "Lobo Pequeno": (old_folder, "lobo_coiote_1778027475322.png"),
-            "Urso Cinzento das Montanhas": (new_folder, "urso_cinzento_1779226147184.png"),
-            "Abutre Faminto": (old_folder, "abutre_1778027551924.png"),
-            "Bêbado do Saloon": (new_folder, "bebado_saloon_1779226159845.png"),
-            "Guarda do Trem": (new_folder, "guarda_trem_1779226279482.png"),
-            "Desertor da Cavalaria": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "O Coronel Sem Nome": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Garimpeiro Ganancioso": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Capataz da Fazenda": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "O Carrasco de Black Rock": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Pistoleiro de Aluguel": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Caçador de Recompensas Rival": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Billy the Kid": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Xerife Corrupto": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
-            "Xerife Renegado": (old_folder, "ladrao_bandoleiro_1778028056322.png")
+            "Coiote Faminto": "lobo_coiote_1778027475322.png",
+            "Lobo Pequeno": "lobo_coiote_1778027475322.png",
+            "Urso Cinzento das Montanhas": "urso_cinzento_1779226147184.png",
+            "Abutre Faminto": "abutre_1778027551924.png",
+            "Bêbado do Saloon": "bebado_saloon_1779226159845.png",
+            "Guarda do Trem": "guarda_trem_1779226279482.png",
+            "Desertor da Cavalaria": "ladrao_bandoleiro_1778028056322.png",
+            "O Coronel Sem Nome": "ladrao_bandoleiro_1778028056322.png",
+            "Garimpeiro Ganancioso": "ladrao_bandoleiro_1778028056322.png",
+            "Capataz da Fazenda": "ladrao_bandoleiro_1778028056322.png",
+            "O Carrasco de Black Rock": "ladrao_bandoleiro_1778028056322.png",
+            "Pistoleiro de Aluguel": "ladrao_bandoleiro_1778028056322.png",
+            "Caçador de Recompensas Rival": "ladrao_bandoleiro_1778028056322.png",
+            "Billy the Kid": "ladrao_bandoleiro_1778028056322.png",
+            "Xerife Corrupto": "ladrao_bandoleiro_1778028056322.png",
+            "Xerife Renegado": "ladrao_bandoleiro_1778028056322.png"
         }
         
-        folder, img_name = enemy_imgs.get(self.inimigo.nome, (old_folder, "ladrao_bandoleiro_1778028056322.png"))
-        img_path = f"{folder}\\{img_name}"
+        img_name = enemy_imgs.get(self.inimigo.nome, "ladrao_bandoleiro_1778028056322.png")
+        img_path = os.path.join(assets_folder, img_name)
         ui.mostrar_imagem(img_path)
         
         ui.esperar_enter()

@@ -5,6 +5,9 @@ import threading
 import re
 from PIL import Image, ImageTk
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 class GameGUI:
     def __init__(self):
         self.root = tk.Tk()
@@ -148,7 +151,7 @@ def imprimir_lento(texto, cor="white", atraso=0.015):
 
 def tela_titulo():
     limpar_tela()
-    img_path = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21\faroeste_capa_1778027339569.png"
+    img_path = os.path.join(BASE_DIR, "assets", "faroeste_capa_1778027339569.png")
     if os.path.exists(img_path):
         mostrar_imagem(img_path, width=400, height=300)
     
@@ -191,7 +194,7 @@ def mostrar_inventario(jogador):
     console.print(f"[bold yellow]--- Sela de {jogador.nome} ---[/bold yellow]", justify="center")
     
     # Ilustração da Sela
-    img_path = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21\sela_faroeste_1778026536324.png"
+    img_path = os.path.join(BASE_DIR, "assets", "sela_faroeste_1778026536324.png")
     if os.path.exists(img_path):
         mostrar_imagem(img_path)
     
