@@ -15,45 +15,48 @@ class Combate:
         lista = self.inimigo.falas.get(situacao, [])
         if lista:
             fala = random.choice(lista)
-            print(f"\n{self.inimigo.nome}: {fala}")
+            ui.console.print(f"\n[bold red]{self.inimigo.nome}:[/bold red] {fala}")
 
     def iniciar_combate(self):
         ui.limpar_tela()
         ui.console.print(f"\n[bold red]Um perigo se aproxima no horizonte...[/bold red]")
         
         # Mapeamento de imagens
+        old_folder = r"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21"
+        new_folder = r"C:\Users\vinic\.gemini\antigravity\brain\1149e488-93d8-4b3b-ad9d-70e9dd074eee"
+        
         enemy_imgs = {
-            "Coiote Faminto": "lobo_coiote_1778027475322.png",
-            "Lobo Pequeno": "lobo_coiote_1778027475322.png",
-            "Urso Cinzento das Montanhas": "lobo_coiote_1778027475322.png",
-            "Abutre Faminto": "abutre_1778027551924.png",
-            "Bêbado do Saloon": "ladrao_bandoleiro_1778028056322.png", # Proxy pra bebado (falhou API)
-            "Guarda do Trem": "ladrao_bandoleiro_1778028056322.png", # Proxy (falhou API)
-            "Desertor da Cavalaria": "ladrao_bandoleiro_1778028056322.png",
-            "O Coronel Sem Nome": "ladrao_bandoleiro_1778028056322.png",
-            "Garimpeiro Ganancioso": "ladrao_bandoleiro_1778028056322.png",
-            "Capataz da Fazenda": "ladrao_bandoleiro_1778028056322.png",
-            "O Carrasco de Black Rock": "ladrao_bandoleiro_1778028056322.png",
-            "Pistoleiro de Aluguel": "ladrao_bandoleiro_1778028056322.png",
-            "Caçador de Recompensas Rival": "ladrao_bandoleiro_1778028056322.png",
-            "Billy the Kid": "ladrao_bandoleiro_1778028056322.png",
-            "Xerife Corrupto": "ladrao_bandoleiro_1778028056322.png",
-            "Xerife Renegado": "ladrao_bandoleiro_1778028056322.png"
+            "Coiote Faminto": (old_folder, "lobo_coiote_1778027475322.png"),
+            "Lobo Pequeno": (old_folder, "lobo_coiote_1778027475322.png"),
+            "Urso Cinzento das Montanhas": (new_folder, "urso_cinzento_1779226147184.png"),
+            "Abutre Faminto": (old_folder, "abutre_1778027551924.png"),
+            "Bêbado do Saloon": (new_folder, "bebado_saloon_1779226159845.png"),
+            "Guarda do Trem": (new_folder, "guarda_trem_1779226279482.png"),
+            "Desertor da Cavalaria": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "O Coronel Sem Nome": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Garimpeiro Ganancioso": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Capataz da Fazenda": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "O Carrasco de Black Rock": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Pistoleiro de Aluguel": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Caçador de Recompensas Rival": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Billy the Kid": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Xerife Corrupto": (old_folder, "ladrao_bandoleiro_1778028056322.png"),
+            "Xerife Renegado": (old_folder, "ladrao_bandoleiro_1778028056322.png")
         }
         
-        img_name = enemy_imgs.get(self.inimigo.nome, "ladrao_bandoleiro_1778028056322.png")
-        img_path = rf"C:\Users\vinic\.gemini\antigravity\brain\e6a79699-bf18-4c87-982a-2d49a9e99e21\{img_name}"
+        folder, img_name = enemy_imgs.get(self.inimigo.nome, (old_folder, "ladrao_bandoleiro_1778028056322.png"))
+        img_path = f"{folder}\\{img_name}"
         ui.mostrar_imagem(img_path)
         
-        time.sleep(1)
+        ui.esperar_enter()
 
         if self.inimigo.historia:
             ui.console.print(f"\n[italic gray]*{self.inimigo.historia}*[/italic gray]")
-            time.sleep(2)
+            ui.esperar_enter()
 
         ui.limpar_tela()
         self.mostrar_fala_inimigo("inicio")
-        time.sleep(1)
+        ui.esperar_enter()
 
         while self.jogador.vida_atual > 0 and self.inimigo.vida_atual > 0:
             ui.limpar_tela()
