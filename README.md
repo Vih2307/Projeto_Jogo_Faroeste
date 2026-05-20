@@ -1,2 +1,1 @@
-SHOTGUN
-Use o comando pip install pillow e depois execute o arquivo main.py
+Use o comando 'pip install pillow' e depois execute o arquivo main.py
